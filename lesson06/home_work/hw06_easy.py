@@ -13,17 +13,17 @@ class Triangle:
 		self.y2 = y2
 		self.x3 = x3
 		self.y3 = y3
-		self.perimeter = ((x1-x2)**2 + (y1-y2)**2)**0.5 + ((x1-x3)**2 + (y1-y3)**2)**0.5 + ((x2-x3)**2 + (y2-y3)**2)**0.5
-		if self.perimeter == 0:
+		self.area = math.fabs(((x2-x1)*(y3-y1)-(x3-x1)*(y2-y1)))/2
+		if self.area == 0:
 			print('Невозможно построить треугольник')
 			exit(1)
 
 	def get_area(self):
-		area = math.fabs(((x2-x1)*(y3-y1)-(x3-x1)*(y2-y1)))/2
-		return area
+		return self.area
 
 	def get_perimeter(self):
-		return self.perimeter
+		perimeter = ((x1-x2)**2 + (y1-y2)**2)**0.5 + ((x1-x3)**2 + (y1-y3)**2)**0.5 + ((x2-x3)**2 + (y2-y3)**2)**0.5
+		return perimeter
 
 
 
