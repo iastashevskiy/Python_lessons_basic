@@ -57,3 +57,51 @@
 модуль random: http://docs.python.org/3/library/random.html
 
 """
+
+
+import random
+
+def get_row_values():
+	r = [random.randint(1,91) for i in range(0,5)]
+	r.sort()
+	for i in range (0, len(r) - 1):
+		if r[i] == r[i+1]:
+			r = [random.randint(1,91) for i in range(0,5)]
+			r.sort()
+	return r
+
+
+def insert_blancks(row):
+	for i in range (0,3):
+		row.insert(random.randint(0,len(row)), '-')
+	return row
+
+
+def genetrate_card():
+	
+	row1 = get_row_values()
+	row2 = get_row_values()
+	row3 = get_row_values()
+	
+	for i in range (0, len(row2)):
+		if row2[i] in row1:
+			row2 = get_row_values()
+	
+	for i in range (0, len(row3)):
+		if row3[i] in row1 or row2:
+			row3 = get_row_values()
+		
+	row1 = insert_blancks(row1)
+	row2 = insert_blancks(row2)
+	row3 = insert_blancks(row3)
+
+
+	card = [row1, row2, row3]
+	return card
+
+
+
+
+
+card = genetrate_card()
+print(card)
