@@ -90,18 +90,33 @@ def genetrate_card():
 	for i in range (0, len(row3)):
 		if row3[i] in row1 or row2:
 			row3 = get_row_values()
-		
+
+	used_values = [row1 + row2 + row3]
+
 	row1 = insert_blancks(row1)
 	row2 = insert_blancks(row2)
 	row3 = insert_blancks(row3)
 
 
 	card = [row1, row2, row3]
-	return card
+	return card, used_values
+
+def generate_barrel(used = []):
+	
+	barrel_value = random.randint(1,91)
+	while barrel_value in used:
+		barrel_value = random.randint(1,91)
+
+	used.append(barrel_value)
+	return barrel_value, used
 
 
 
+genetated = genetrate_card()
+card = genetated[0]
+used = genetated[1]
 
-
-card = genetrate_card()
+bar = generate_barrel()
+used = bar[1]
 print(card)
+print (bar[0])
